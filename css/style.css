@@ -98,7 +98,16 @@ img {
 }
 .site-nav .link.current {
   color: var(--accent-color);
-  border-bottom: 4px solid var(--accent-color);
+  position: relative;
+}
+.current::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 4px;
+  background-color: var(--accent-color);
   border-radius: 2px;
 }
 .link {
@@ -112,7 +121,7 @@ img {
 
   transition-property: border, color;
   transition-duration: 250ms;
-  transition-timing-function: ease;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 .contacts-header {
   margin-left: auto;
@@ -134,12 +143,11 @@ img {
 
   transition-property: color;
   transition-duration: 250ms;
-  transition-timing-function: ease;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 .link-icon {
   margin-right: 10px;
   fill: currentColor;
-
 }
 
 .contacts-header-link:hover,
@@ -261,7 +269,6 @@ img {
 /* команда */
 .team {
   background-color: var(--section-bg-color);
-  
 }
 .team-list {
   display: flex;
@@ -311,7 +318,7 @@ img {
 
   transition-property: background-color, color;
   transition-duration: 250ms;
-  transition-timing-function: ease;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 .team-social-icon {
   fill: currentColor;
@@ -342,7 +349,7 @@ img {
 
   transition-property: border, color;
   transition-duration: 250ms;
-  transition-timing-function: ease;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 .client-icon {
   fill: currentColor;
@@ -358,7 +365,6 @@ img {
   background-color: var(--footer-bg-color);
   padding-top: 60px;
   padding-bottom: 60px;
-
 }
 .footer .logo {
   margin-bottom: 20px;
@@ -382,7 +388,7 @@ img {
 
   transition-property: color;
   transition-duration: 250ms;
-  transition-timing-function: ease;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .address-foot:hover,
@@ -396,14 +402,13 @@ img {
 
   transition-property: color;
   transition-duration: 250ms;
-  transition-timing-function: ease;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .address-post:hover,
 .address-post:focus,
 .address-post:active {
   color: var(--accent-color);
-  
 }
 
 .footer-sections {
@@ -436,7 +441,7 @@ img {
 
   transition-property: background-color;
   transition-duration: 250ms;
-  transition-timing-function: ease;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .footer-link:hover,
@@ -473,8 +478,8 @@ img {
 
   transition-property: background, color;
   transition-duration: 250ms;
-  transition-timing-function: ease;
-  }
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
 .button.primary:hover,
 .button.primary:focus,
 .button.primary:active {
@@ -513,13 +518,12 @@ img {
 }
 
 .card {
-  
   flex-basis: calc(100% / 3 - 30px);
   margin-right: 0;
   margin-left: 30px;
   margin-top: 30px;
 }
-.card-img {
+.overlay {
   position: relative;
   overflow: hidden;
 }
@@ -533,37 +537,80 @@ img {
   display: block;
   color: var(--primary-text-color);
   overflow: hidden;
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .card-link:hover,
-.card-link:focus {
+.card-link:focus,
+.card-link:active {
   border: none;
   box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12), 0px 4px 4px rgba(0, 0, 0, 0.06),
     1px 4px 6px rgba(0, 0, 0, 0.16);
-
 }
-.card-link:hover .overlay {
+.card-link:hover .overlay-text,
+.card-link:focus .overlay-text,
+.card-link:active .overlay-text {
   transform: translatey(0);
-
 }
-.overlay {
-position: absolute;
-bottom: 0;
-left: 0;
-width: 100%;
-height: 100%;
+.overlay-text {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 
-background-color: rgba(33, 150, 243, 0.9);
-color: var(--accent-white-color);
-padding: 63px 24px;
-transform: translatey(100%);
-transition: transform 250ms ease;
-font-weight: 400;
-font-size: 18px;
-line-height: 1.56;
-
-}
-.deckription {
+  background-color: rgba(33, 150, 243, 0.9);
+  color: var(--accent-white-color);
+  padding: 63px 24px;
+  transform: translatey(100%);
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  font-weight: 400;
   font-size: 18px;
   line-height: 1.56;
-  color: var(--accent-white-color);
+}
+/*  модальное окно   */
+.backdrop {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.2);
+  transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    visibility 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.backdrop.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+}
+.backdrop.is-hidden .modal-window {
+  transform: scale(0.1);
+}
+.modal-window {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) scale(1);
+  transition: transform 250ms;
+  width: 528px;
+  height: 581px;
+  background-color: #fff;
+  border-radius: 4px;
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
+    0px 2px 1px rgba(0, 0, 0, 0.2);
+}
+
+.close {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 2px solid rgba(0, 0, 0, 0.1);
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
 }
