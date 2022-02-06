@@ -8,6 +8,8 @@
   --section-bg-color: #f5f4fa;
   --footer-text-color: rgba(255, 255, 255, 0.6);
   --clients-logo-color: #afb1b8;
+  --transition-time: 250ms;
+  --transition-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 .visually-hidden {
   position: absolute;
@@ -52,7 +54,6 @@ img {
   padding-right: 15px;
   margin-left: auto;
   margin-right: auto;
-  /* outline: 2px solid red; */
 }
 .list {
   list-style: none;
@@ -119,9 +120,9 @@ img {
   letter-spacing: 0.02em;
   color: var(--title-text-color);
 
-  transition-property: border, color;
-  transition-duration: 250ms;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-property: color;
+  transition-duration: var(--transition-time);
+  transition-timing-function: var(--transition-function);
 }
 .contacts-header {
   margin-left: auto;
@@ -142,8 +143,8 @@ img {
   align-items: center;
 
   transition-property: color;
-  transition-duration: 250ms;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: var(--transition-time);
+  transition-timing-function: var(--transition-function);
 }
 .link-icon {
   margin-right: 10px;
@@ -191,6 +192,10 @@ img {
 .hero .button {
   width: 200px;
   height: 50px;
+
+  transition-property: background;
+  transition-duration: var(--transition-time);
+  transition-timing-function: var(--transition-function);
 }
 .hero .button:hover,
 .hero .button:focus {
@@ -317,8 +322,8 @@ img {
   color: var(--clients-logo-color);
 
   transition-property: background-color, color;
-  transition-duration: 250ms;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: var(--transition-time);
+  transition-timing-function: var(--transition-function);
 }
 .team-social-icon {
   fill: currentColor;
@@ -348,8 +353,8 @@ img {
   color: var(--clients-logo-color);
 
   transition-property: border, color;
-  transition-duration: 250ms;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: var(--transition-time);
+  transition-timing-function: var(--transition-function);
 }
 .client-icon {
   fill: currentColor;
@@ -387,8 +392,8 @@ img {
   color: var(--footer-text-color);
 
   transition-property: color;
-  transition-duration: 250ms;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: var(--transition-time);
+  transition-timing-function: var(--transition-function);
 }
 
 .address-foot:hover,
@@ -401,8 +406,8 @@ img {
   color: var(--accent-white-color);
 
   transition-property: color;
-  transition-duration: 250ms;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: var(--transition-time);
+  transition-timing-function: var(--transition-function);
 }
 
 .address-post:hover,
@@ -421,6 +426,7 @@ img {
 .footer-links-text {
   display: block;
   color: var(--accent-white-color);
+  font-weight: 700;
   font-size: 14px;
   line-height: 1.14;
   text-transform: uppercase;
@@ -475,10 +481,12 @@ img {
   font-size: 16px;
   line-height: 1.63;
   letter-spacing: 0.06em;
+}
 
-  transition-property: background, color;
-  transition-duration: 250ms;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+.filter .button {
+  transition-property: background, color, box-shadow;
+  transition-duration: var(--transition-time);
+  transition-timing-function: var(--transition-function);
 }
 .button.primary:hover,
 .button.primary:focus,
@@ -537,8 +545,11 @@ img {
   display: block;
   color: var(--primary-text-color);
   overflow: hidden;
-  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition-property: box-shadow;
+  transition-duration: var(--transition-time);
+  transition-timing-function: var(--transition-function);
 }
+
 .card-link:hover,
 .card-link:focus,
 .card-link:active {
@@ -547,8 +558,7 @@ img {
     1px 4px 6px rgba(0, 0, 0, 0.16);
 }
 .card-link:hover .overlay-text,
-.card-link:focus .overlay-text,
-.card-link:active .overlay-text {
+.card-link:focus .overlay-text {
   transform: translatey(0);
 }
 .overlay-text {
@@ -562,7 +572,9 @@ img {
   color: var(--accent-white-color);
   padding: 63px 24px;
   transform: translatey(100%);
-  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition-property: transform;
+  transition-duration: var(--transition-time);
+  transition-timing-function: var(--transition-function);
   font-weight: 400;
   font-size: 18px;
   line-height: 1.56;
@@ -575,8 +587,8 @@ img {
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.2);
-  transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1),
-    visibility 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: opacity var(--transition-time) var(--transition-function),
+    visibility var(--transition-time) var(--transition-function);
 }
 .backdrop.is-hidden {
   opacity: 0;
